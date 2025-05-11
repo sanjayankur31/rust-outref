@@ -34,6 +34,7 @@ use the "%{crate}" crate.
 %doc %{crate_instdir}/CODE_OF_CONDUCT.md
 %doc %{crate_instdir}/CONTRIBUTING.md
 %doc %{crate_instdir}/README.md
+%exclude %{crate_instdir}/justfile
 %{crate_instdir}/
 
 %package     -n %{name}+default-devel
@@ -50,6 +51,9 @@ use the "default" feature of the "%{crate}" crate.
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
+# remove un-needed files
+rm -rfv .github
+
 %cargo_prep
 
 %generate_buildrequires
